@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/ 	var installedModules = require('../../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,23 +88,128 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "KqAr");
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "KqAr":
+/***/ "0T2T":
+/***/ (function(module, exports, __webpack_require__) {
+
+const mongoose = __webpack_require__("FiKB");
+
+const NoteSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: [true, 'Please add a Title'],
+    unique: true,
+    maxlength: [40, 'Title Cannot be more than 40 Characters']
+  },
+  description: {
+    type: String,
+    required: true,
+    maxlength: [200, 'Descript cannot be more than 200 Characters']
+  }
+});
+module.exports = mongoose.models.Note || mongoose.model('Note', NoteSchema);
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("Jdk6");
+
+
+/***/ }),
+
+/***/ "FiKB":
+/***/ (function(module, exports) {
+
+module.exports = require("mongoose");
+
+/***/ }),
+
+/***/ "Jdk6":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-    
+// EXTERNAL MODULE: external "mongoose"
+var external_mongoose_ = __webpack_require__("FiKB");
+var external_mongoose_default = /*#__PURE__*/__webpack_require__.n(external_mongoose_);
 
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
+// CONCATENATED MODULE: ./utils/dbConnect.js
+
+const connection = {};
+
+async function dbConnect(param) {
+  if (connection.isConnected) {
+    return;
+  }
+
+  const db = await external_mongoose_default.a.connect("mongodb+srv://make-develop:makedevelop@cluster0.ahrvn.gcp.mongodb.net/tests?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  connection.isConnected = db.connection[0];
+}
+
+/* harmony default export */ var utils_dbConnect = (dbConnect);
+// EXTERNAL MODULE: ./models/Note.js
+var Note = __webpack_require__("0T2T");
+var Note_default = /*#__PURE__*/__webpack_require__.n(Note);
+
+// CONCATENATED MODULE: ./src/pages/api/test.js
+
+
+utils_dbConnect();
+/* harmony default export */ var test = __webpack_exports__["default"] = (async (req, res) => {
+  const {
+    method
+  } = req;
+
+  switch (method) {
+    case 'GET':
+      try {
+        const notes = await Note_default.a.find({});
+        res.status(200).json({
+          success: true,
+          data: notes
+        });
+      } catch (error) {
+        res.status(400).json({
+          success: false
+        });
+      }
+
+      break;
+
+    case 'POST':
+      try {
+        const notes = await Note_default.a.create(req.body);
+        res.status(201).json({
+          success: true,
+          data: notes
+        });
+      } catch (error) {
+        res.status(400).json({
+          success: false,
+          msg: error.message
+        });
+      }
+
+      break;
+
+    default:
+      res.status(400).json({
+        success: false
+      });
+      break;
+  }
+});
 
 /***/ })
 

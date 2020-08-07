@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/ 	var installedModules = require('../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,23 +88,94 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "KqAr");
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "KqAr":
+/***/ "2Eee":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-    
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+const testinput = () => {
+  const {
+    0: contact,
+    1: setContact
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    name: '',
+    email: '',
+    subject: 'StaticForms - Contact Form',
+    honeypot: '',
+    // if any value received in this field, form submission will be ignored.
+    message: '',
+    replyTo: '@',
+    // this will set replyTo of email to email address entered in the form
+    accessKey: 'you-access-key' // get your access key from https://www.staticforms.xyz
+
+  });
+  const {
+    0: response,
+    1: setResponse
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    type: '',
+    message: ''
+  });
+
+  const handleChange = e => setContact(_objectSpread(_objectSpread({}, contact), {}, {
+    [e.target.name]: e.target.value
+  }));
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    console.log(contact);
+  };
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("form", {
+    method: "post",
+    onSubmit: handleSubmit
+  }, __jsx("input", {
+    className: "input",
+    type: "text",
+    placeholder: "Name",
+    name: "name",
+    onChange: handleChange,
+    required: true
+  }), __jsx("button", {
+    className: "button is-primary",
+    type: "submit"
+  }, "Submit")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (testinput);
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("2Eee");
+
+
+/***/ }),
+
+/***/ "cDcd":
+/***/ (function(module, exports) {
+
+module.exports = require("react");
 
 /***/ })
 
