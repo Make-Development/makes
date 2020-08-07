@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport LayoutTop from '../components/layout/top';\nexport default function Nav() {\n  return __jsx(React.Fragment, null, __jsx(LayoutTop, null));\n}","map":null,"metadata":{},"sourceType":"module"}

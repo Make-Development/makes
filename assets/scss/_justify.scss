@@ -1,0 +1,11 @@
+@include justify {
+    &_between {
+        display: -ms-flexbox !important;
+        display: flex !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+        @include items {
+            padding: 0.5rem !important;
+        }
+    }
+}

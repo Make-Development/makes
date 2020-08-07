@@ -1,0 +1,27 @@
+@include list {
+    width: 100%;
+    @include list {
+        &_head {
+            padding-left: 1rem!important;
+        }
+        &_content {
+            padding: .25rem!important;
+            .list-group{
+                margin-top: .4rem;
+            }
+            .list-group-item {
+                background-color: rgb(248, 249, 250);
+                border: 0px solid rgba(0, 0, 0, 0.125);
+                margin-bottom: .3rem; 
+                transition: all 0.5s ease 0s ;
+                &:hover {
+                    cursor: pointer;
+                    background-color: #e3e3e3;
+                } 
+            }
+        }
+    }
+}
+
+
+ 

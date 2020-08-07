@@ -1,0 +1,68 @@
+
+@mixin mk {
+    .mk {
+        @content;
+    }
+}
+
+@mixin bg {
+    .bg {
+        @content;
+    }
+}
+@mixin btn {
+    .btn {
+        @content;
+    }
+}
+
+@mixin flg {
+    .form-label-group {
+        @content;
+    }
+}
+
+@mixin sidebar {
+    @include mk {
+        &-sidebar{
+            @content;
+        }
+    }
+}
+@mixin  navLink {
+    .nav-link {
+        @content;
+    }
+}
+
+@mixin  Control {
+    @include mk {
+        &-control{
+            @content;
+        }
+    }
+  
+}
+
+@mixin  list {
+    @include mk {
+        &-list{
+            @content;
+        }
+    }
+}
+
+@mixin  justify {
+    @include mk {
+        &-justify{
+            @content;
+        }
+    }
+}
+@mixin  items {
+    @include mk {
+        &-items{
+            @content;
+        }
+    }
+}
