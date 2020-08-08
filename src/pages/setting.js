@@ -1,8 +1,9 @@
 import React from 'react'
-
+import fetch from 'isomorphic-fetch';
 import ContentMain from '../components/layouts/content/main'
 
-export default function Setting() {
+export default function Setting(props) {
+
     return (
         <>
             <nav className="navbar navbar-light bg-light fixed-top  flex-md-nowrap pl-4 pr-3 py-0 shadow-sm">
@@ -49,7 +50,7 @@ export default function Setting() {
 
                     </div>
                 </nav>
-           
+
                 <div className="row mk-control" >
                     <div className="   mk-control_tools ml-md-auto" >
                         <div className="mk-list">
@@ -67,11 +68,19 @@ export default function Setting() {
                             </div>
                             <div className="mk-list_content">
                                 <ul className="list-group">
-                                    <li className="list-group-item" >Cras justo odio</li>
-                                    <li className="list-group-item" >Dapibus ac facilisis in</li>
-                                    <li className="list-group-item" >Morbi leo risus</li>
-                                    <li className="list-group-item" >Porta ac consectetur ac</li>
-                                    <li className="list-group-item" >Vestibulum at eros</li>
+                                    {
+
+                                        props.datas.data.map((e) => (
+                                            <>
+
+                                                <li className="list-group-item" >
+                                                    {e.title}
+                                                </li>
+                                            </>
+                                        ))
+
+                                    }
+                                  
                                 </ul >
                             </div>
                         </div>
@@ -95,4 +104,15 @@ export default function Setting() {
         </ >
     )
 
+}
+
+export async function getStaticProps() {
+
+    const resNotes = await fetch('http://localhost:300/api/notes');
+    const datas = await resNotes.json()
+    return {
+        props: {
+            datas,
+        },
+    }
 }

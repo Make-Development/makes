@@ -1,44 +1,27 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import fetch from 'isomorphic-fetch';
 import NavMain from '../components/layouts/navbar/NavMain'
 import ContentMain from '../components/layouts/content/main'
 
-export default function Indexs(props) {
-
-  const [contact, setContact] = useState({
-    name: '',
-  });
-
-  const handleChange = e => {
-    setContact({ ...contact, [e.target.name]: e.target.value });
-  }
- 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    console.log(contact)
-  };
+export default function index(props) {
 
   return (
-
     <>
       <NavMain />
-
       <ContentMain>
 
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 className="h2">Dashboard</h1>
           <div className="btn-toolbar mb-2 mb-md-0">
 
-            <form onSubmit={handleSubmit}>
+            <form >
               <div className="input-group mb-2 mr-sm-2">
                 <input
                   className='form-control form-control-sm'
                   type='text'
                   placeholder='Name'
                   name='name'
-                  onChange={handleChange}
-                  required
-                />
+                  required />
                 <div className="input-group-prepend">
                   <input type="submit" value="Submit" className="btn btn-sm btn-outline-secondary " />
                 </div>
@@ -48,13 +31,24 @@ export default function Indexs(props) {
 
           </div>
         </div>
+        {
+
+          props.notes.data.map( (e)=> (
+            <>
+              <div class="alert alert-primary" role="alert">
+                  {e.title}
+              </div>
+            </>
+          ))
+
+        }
 
         <div className="row">
           {
 
-            props.data.map(({ show }) => (
+            props.datas.map(({ show }) => (
 
-              <div className="col-3">
+              <div className="col-3" data-key={show._id}>
                 <div className="card mb-3" style={{ maxWidth: 540 }}>
                   <div className="row no-gutters">
                     <div className="col-md-4 p-0">
@@ -76,7 +70,6 @@ export default function Indexs(props) {
           }
         </div>
 
-
       </ContentMain>
 
 
@@ -88,11 +81,13 @@ export default function Indexs(props) {
 export async function getStaticProps() {
 
   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  const data = await res.json()
+  const datas = await res.json()
 
+  const resNotes = await fetch('http://localhost:300/api/notes');
+  const notes = await resNotes.json()
   return {
     props: {
-      data,
+      datas, notes,
     },
   }
 }

@@ -19,7 +19,6 @@ export default class MKApp extends App {
     
     render() {
         const { Component, pageProps } = this.props;
-
         
         return (
             <>
