@@ -1,5 +1,6 @@
 @include Control {
     position: relative;
+    margin-right: 0px;
     @include Control {
         &_tools {
             position: fixed;

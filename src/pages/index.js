@@ -33,11 +33,12 @@ export default function index(props) {
         </div>
         {
 
-          props.notes.data.map( (e)=> (
+          props.notes.data.map((e) => (
             <>
-              <div class="alert alert-primary" role="alert">
-                  {e.title}
+              <div className="alert alert-primary" role="alert">
+                {e.title}
               </div>
+
             </>
           ))
 

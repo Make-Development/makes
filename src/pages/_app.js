@@ -10,16 +10,16 @@ import '../../assets/css/style.main.css';
 
 
 export default class MKApp extends App {
-    
+
     handleSubmit(event) {
         alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
-      }
+    }
 
-    
+
     render() {
         const { Component, pageProps } = this.props;
-        
+
         return (
             <>
 
@@ -35,7 +35,7 @@ export default class MKApp extends App {
 
                 </Head>
 
-                    <Component {...pageProps} />
+                <Component {...pageProps} />
 
 
                 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
@@ -50,13 +50,7 @@ export default class MKApp extends App {
 
 
     componentDidMount() {
-
-        $('[data-tools="true"]').each(function (e) {
-            $('.mk-control_tools').toggleClass('active')
-        }).click(function (e) {
-            e.preventDefault()
-            $('.mk-control_tools').toggleClass('active')
-        });
+       
     }
 
 }

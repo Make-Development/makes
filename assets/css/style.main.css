@@ -140,7 +140,8 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25); }
 
 .mk-control {
-  position: relative; }
+  position: relative;
+  margin-right: 0px; }
   .mk-control .mk-control_tools {
     position: fixed;
     width: 19%;
@@ -171,8 +172,8 @@ body {
     .mk-list .mk-list_content .list-group {
       margin-top: .4rem; }
     .mk-list .mk-list_content .list-group-item {
-      background-color: #f8f9fa;
-      border: 0px solid rgba(0, 0, 0, 0.125);
+      background-color: #eceff1;
+      border: 0px solid #eceff1;
       margin-bottom: .3rem;
       transition: all 0.5s ease 0s; }
       .mk-list .mk-list_content .list-group-item:hover {
@@ -186,3 +187,7 @@ body {
   justify-content: space-between !important; }
   .mk-justify_between .mk-items {
     padding: 0.5rem !important; }
+
+@font-face {
+  font-family: SourceCodePro-Regular !important;
+  src: url("../font/SourceCodePro-Regular.ttf") !important; }
