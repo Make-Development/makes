@@ -1,24 +1,22 @@
 
 import React, { useState } from 'react';
 
+export default function Home(props) {
 
-//:> 
 
-function Home(props) {
-
-  const jwt = require("jsonwebtoken");
   const [contact, setContact] = useState({
     email: '',
     password: '',
     chk: false
   });
 
+
   const handleChange = e => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   }
   const Changechk = e => {
-      contact.chk = e.target.checked;
-      console.log(contact);
+    contact.chk = e.target.checked;
+    console.log(contact);
 
     setContact({ ...contact, [e.target.name]: e.target.checked });
   }
@@ -28,7 +26,7 @@ function Home(props) {
     e.preventDefault();
     console.log(contact)
 
-    
+
   };
 
 
@@ -47,9 +45,8 @@ function Home(props) {
                 <form onSubmit={handleSubmit}>
                   <div className="col-md-9 col-lg-8 mx-auto">
 
-                    <h1 className="mk-login-heading ">Make</h1>
-                    <blockquote className="blockquote">
-                      <footer className="blockquote-footer">Welcome back! </footer>
+                    <blockquote className="blockquote text-center">
+                      <img src="../lg_make.png" alt="" width={200} height={200} />
                     </blockquote>
 
                     <div className="form-label-group">
@@ -64,17 +61,16 @@ function Home(props) {
                         className="form-control" placeholder="Password" />
                       <label htmlFor="inputPassword">Password</label>
                     </div>
-                    <div className="custom-control custom-checkbox mb-3">
+                    <div className="custom-control custom-checkbox mb-3 pl-2">
                       <input type="checkbox" checked={contact.chk}
-                         name="chk" onChange={Changechk}
+                        name="chk" onChange={Changechk}
                         className="custom-control-input" id="customCheck1" />
                       <label className="custom-control-label ml-2" >Remember password</label>
                     </div>
                     <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold coderatings-button mb-2" type="submit">Sign in</button>
-                    <hr className="my-5" />
 
-                    <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold auth-google-button mb-2" type="submit">
-                      Sign up with Google</button>
+                    <button className="btn btn-lg btn-primary btn-block btn-login  font-weight-bold auth-google-button mb-2 " type="submit">
+                      Sign up  Google</button>
                   </div>
                 </form>
 
@@ -85,10 +81,5 @@ function Home(props) {
       </div>
     </>
 
-
   )
 }
-
-
-
-export default Home;

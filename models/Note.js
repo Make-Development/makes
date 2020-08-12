@@ -10,6 +10,11 @@ const NoteSchema = new mongoose.Schema({
         unique: true,
         maxlength: [40, 'Title Cannot be more than 40 Characters']
     },
+    suttitle: {
+        type:String,
+        required: true,
+        maxlength: [50, 'Descript ']
+    },
     description: {
         type:String,
         required: true,

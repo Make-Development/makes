@@ -32,16 +32,16 @@ export default function index(props) {
           </div>
         </div>
         {
-
-          props.notes.data.map((e) => (
-            <>
-              <div className="alert alert-primary" role="alert">
-                {e.title}
-              </div>
-
-            </>
-          ))
-
+          /* 
+                    props.notes.data.map((e) => (
+                      <>
+                        <div className="alert alert-primary" role="alert">
+                          {e.title}
+                        </div>
+          
+                      </>
+                    ))
+          */
         }
 
         <div className="row">
@@ -84,11 +84,12 @@ export async function getStaticProps() {
   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
   const datas = await res.json()
 
-  const resNotes = await fetch('http://localhost:300/api/notes');
-  const notes = await resNotes.json()
+  /* const resNotes = await fetch('http://localhost:300/api/notes');
+   const notes = await resNotes.json()
+   notes,*/
   return {
     props: {
-      datas, notes,
+      datas,
     },
   }
 }

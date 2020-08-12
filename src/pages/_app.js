@@ -26,12 +26,12 @@ export default class MKApp extends App {
                 <Head>
                     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-                    <title>We Are Make !</title>
+                    <title>Make</title>
 
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
                     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-
+                    <link rel="shortcut icon" href="../lg_make128x128.ico" />
 
                 </Head>
 
