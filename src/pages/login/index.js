@@ -46,7 +46,7 @@ export default function Home(props) {
                   <div className="col-md-9 col-lg-8 mx-auto">
 
                     <blockquote className="blockquote text-center">
-                      <img src="../lg_make.png" alt="" width={200} height={200} />
+                      <img src="../lg_makefull.svg" alt width={250} height={250} />
                     </blockquote>
 
                     <div className="form-label-group">

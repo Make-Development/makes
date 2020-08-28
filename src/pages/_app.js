@@ -31,7 +31,7 @@ export default class MKApp extends App {
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
                     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-                    <link rel="shortcut icon" href="../lg_make128x128.ico" />
+                    <link rel="shortcut icon" href="../lg_make.svg" />
 
                 </Head>
 

@@ -47,7 +47,7 @@ export default function index(props) {
         <div className="row">
           {
 
-            props.datas.map(({ show }) => (
+           /* props.datas.map(({ show }) => (
 
               <div className="col-3" data-key={show._id}>
                 <div className="card mb-3" style={{ maxWidth: 540 }}>
@@ -66,7 +66,7 @@ export default function index(props) {
                 </div>
               </div>
 
-            ))
+            ))*/
 
           }
         </div>

@@ -2,9 +2,10 @@ import { ApolloServer, gql } from 'apollo-server-micro'
 import { makeExecutableSchema } from 'graphql-tools'
 import { MongoClient } from 'mongodb'
 import mongoose from 'mongoose';
-
-
-
+import httpHeadersPlugin from 'apollo-server-plugin-http-headers';
+import User from '../../../models/User';
+import NextAuth from 'next-auth'
+import jwt from 'jsonwebtoken';
 
 const typeDefs = gql`
   type User {
@@ -17,52 +18,55 @@ const typeDefs = gql`
   type Query {
     users: [User]!
   }
-`
+`;
 
 
 const resolvers = {
     Query: {
-        users(_parent, _args, _context, _info) {
-            return _context.db
-                .collection('users')
-                .findOne()
-                .then((data) => {
-                    return data.users
-                })
-        },
+        users: () => User.find({}),
     },
-}
+};
+
 
 const schema = makeExecutableSchema({
     typeDefs,
     resolvers,
 })
 
-
+const REFRESH_TOKEN_COOKIE_OPTIONS = {
+    // Get part after // and before : (in case port number in URL)
+    // E.g. <http://localhost:3000> becomes localhost
+  
+    httpOnly: true,
+    path: '/',
+    sameSite: true,
+    // Allow non-secure cookies only in development environment without HTTPS
+    secure: !!process.env.BASE_URL.includes('https'),
+  };
+  console.log(REFRESH_TOKEN_COOKIE_OPTIONS);
 
 let db
 
 const apolloServer = new ApolloServer({
     schema,
-    context: async () => {
-        if (!db) {
-            try {
-
-                db = await mongoose.connect(process.env.MONGO_URI, {
-                    useNewUrlParser: true,
-                    useUnifiedTopology: true
-                });
-
-
-            } catch (e) {
-                console.log('--->error while connecting with graphql context (db)', e)
-            }
+    plugins: [httpHeadersPlugin],
+    context: async ({ req }) => {
+        // Header is in form 'Bearer <token>', grabbing the part after ' '
+        const token = req.headers.authorization?.split(' ')[1] || undefined;
+     
+        // Initialise as empty arrays - resolvers will add items if required
+        const setCookies = [];
+        const setHeaders = [];
+       
+        try {
+          const { user } = jwt.verify(token, process.env.JWT_SECRET);
+          
+          return { req, setCookies, setHeaders, user };
+        } catch (error) {
+          return { setCookies, setHeaders, req };
         }
-
-        return { db }
-    },
+      },
 })
-
 
 
 
